@@ -1,24 +1,19 @@
-use crate::delta::*;
-use crate::monoid::*;
-use crate::patch::*;
+use crate::{absorb::*, diff::*, patch::*};
 
 pub struct Jet<A: Patch> {
   pos: A,
-  vel: Delta<A>,
+  vel: Diff<A>,
 }
 
-pub fn constant<A: Monoid + Patch>(value: A) -> Jet<A> {
+pub fn constant<A: Absorb + Patch>(value: A) -> Jet<A> {
   Jet {
     pos: value,
-    vel: Delta::<A>::identity(),
+    vel: Diff::<A>::nil(),
   }
 }
 
 impl<A: Patch> Jet<A> {
-  pub fn change(self: Jet<A>, delta: Delta<A>) -> Jet<A> {
-    Jet {
-      pos: self.pos.patch(&delta.0),
-      vel: self.vel,
-    }
+  pub fn diff(&mut self, diff: Diff<A>) {
+    self.pos.patch(diff);
   }
 }

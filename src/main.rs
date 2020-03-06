@@ -1,14 +1,13 @@
+pub mod absorb;
 pub mod atomic;
 pub mod diff;
-pub mod last;
-pub mod monoid;
-pub mod patch;
-pub mod semigroup;
-pub mod delta;
+pub mod diffable;
 pub mod jet;
+pub mod last;
+pub mod patch;
 pub mod vec;
 
-pub use crate::{last::*, monoid::*, patch::*, delta::*};
+pub use crate::{absorb::*, diff::*, last::*, patch::*};
 use std::ops::Add;
 
 fn main() {
