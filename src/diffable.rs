@@ -1,4 +1,4 @@
-pub use crate::{diff::*, patch::*};
+pub use crate::{patch::*};
 
 pub trait Diffable: Patch + Sized {
   fn diff(&self, post: &Self) -> Diff<Self>;

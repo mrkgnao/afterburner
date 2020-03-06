@@ -1,4 +1,4 @@
-use crate::{absorb::*, diff::*, patch::*};
+use crate::{absorb::*, patch::*};
 
 pub struct IVec<A>(pub Vec<A>);
 
@@ -12,7 +12,7 @@ pub struct VecDiff<A: Patch>(pub Vec<VecEdit<A>>);
 
 impl<A: Patch> Absorb for VecDiff<A> {
   fn nil() -> VecDiff<A> {
-    VecEdit(Absorb::nil())
+    VecDiff(Absorb::nil())
   }
 
   fn absorb(&mut self, other: &mut VecDiff<A>) {
