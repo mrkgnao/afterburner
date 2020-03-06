@@ -1,14 +1,13 @@
 use crate::monoid::*;
 
 pub trait Patch {
-    type Delta: Monoid;
-    fn patch(&self, change: &Self::Delta) -> Self;
+  type Change: Monoid;
+  fn patch(&self, change: &Self::Change) -> Self;
 }
 
 impl Patch for () {
-    type Delta = ();
-    fn patch(&self, _change: &Self::Delta) -> Self {
-        ()
-    }
+  type Change = ();
+  fn patch(&self, _change: &Self::Change) -> Self {
+    ()
+  }
 }
-
